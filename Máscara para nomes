@@ -1,0 +1,5 @@
+case when REGEXP_EXTRACT(Aluno, r'\s(\w)\w*$') is null then 
+concat(REGEXP_EXTRACT(Aluno, r'^(\S+)\s.*')," ", LEFT_TEXT((REGEXP_EXTRACT(Aluno, r'\s([^ ]+)$')),1),"****",right_TEXT((REGEXP_EXTRACT(Aluno, r'\s([^ ]+)$')),1))
+else 
+concat(REGEXP_EXTRACT(Aluno, r'^(\S+)\s.*')," ",REGEXP_EXTRACT(Aluno, r'\s(\w)\w*$'), REGEXP_REPLACE(REGEXP_EXTRACT(Aluno, r'\s([^ ]+)$'), '\\w', '*'), REGEXP_EXTRACT(Aluno,  r'\s\w*(\w)$'))
+end
